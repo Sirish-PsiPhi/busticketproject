@@ -1,15 +1,19 @@
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
+from .models import AvailableBusRoute
 # Create your views here.
 def homePage(request):
     return render(request, 'siteview/homePage.html')
 
+@login_required(login_url='signUp')
 def bookTicket(request):
     return render(request, 'siteview/bookTicket.html')
 
 def seeRoutes(request):
-    return render(request, 'siteview/availableRoutes.html')
+    availbus = AvailableBusRoute.objects.all()
+    return render(request, 'siteview/availableRoutes.html', {'avail': availbus})
 
 def signUp(request):
     context = {}
@@ -42,3 +46,7 @@ def signin(request):
             context["error"] = "Provide valid credentials"
             return render(request, 'siteview/login.html')
     return render(request, 'siteview/login.html')
+
+def signOut(request):
+    logout(request)
+    return render(request, 'siteview/homePage.html')

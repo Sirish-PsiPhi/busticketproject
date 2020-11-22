@@ -10,5 +10,6 @@ urlpatterns = [
     path('seeroutes/', views.seeRoutes),
     path('signup/', views.signUp, name='signUp'),
     path('login/', views.signin, name='login'),
+    path('signout/', views.signOut, name='signout')
     
 ]

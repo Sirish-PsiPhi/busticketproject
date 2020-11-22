@@ -4,6 +4,14 @@
 
 <div>
     <p>This is the available routes</p>
+    {% for route in avail %}
+    <div>
+        <p> {{ route.rID }} </p>
+        <p> Bus type {{ route.bID }} </p>
+        <p> Journey Date {{ route.jDate }} </p>
+        <p> Journey Time{{ route.jTime }} </p>
+    </div>
+    {% endfor %}
 </div>
 
 {% endblock %}

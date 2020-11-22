@@ -21,7 +21,11 @@
     </div>
              
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        {% if request.user.is_active %}
+        <a class="navbar-brand">Welcome: {{ request.user }}</a>
+        {% else %}
         <a class="navbar-brand">Welcome</a>
+        {% endif %}
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -30,10 +34,17 @@
             <a class="nav-link active" href="//127.0.0.1:8000/home">Home <span class="sr-only">(current)</span></a>
             <a class="nav-link" href="//127.0.0.1:8000/bookticket">Book Ticket</a>
             <a class="nav-link" href="//127.0.0.1:8000/seeroutes">See Available Routes</a>
+            {% if request.user.is_active %}
+            <a class="nav-link" href="">Booked Ticket History</a>
+            {% endif %}
           </div>
         </div>
+        {% if request.user.is_active %}
+        <button type="button" class="btn btn-primary btn-sm" id="signout" onclick="location.href = '//127.0.0.1:8000/signout';">Sign Out</button>
+        {% else %}
         <button type="button" class="btn btn-primary btn-sm" id="signup" onclick="location.href = '//127.0.0.1:8000/signup';">Sign Up</button>
         <button type="button" class="btn btn-secondary btn-sm" id="login" onclick="location.href = '//127.0.0.1:8000/login';">Login</button>
+        {% endif %}
       </nav>
 
       {% block content %}
