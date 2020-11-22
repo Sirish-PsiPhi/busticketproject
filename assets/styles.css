@@ -1,0 +1,21 @@
+body{
+    background-color: #0051ff;
+}
+
+.header_cutomer_care_email{
+    width: 80%;
+    text-align: left;
+    float: left;
+}
+
+.header_cutomer_care_number{
+    width: 20%;
+    text-align: right;
+    float: right;
+}
+.btn btn-primary btn-sm{
+    padding: 15px;
+}
+.btn btn-secondary btn-sm{
+    padding: 15px;
+}

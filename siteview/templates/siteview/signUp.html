@@ -1,0 +1,18 @@
+{% extends 'baseLayout.html' %}
+
+{% block content %}
+<div>
+    <p>This is the Signup page</p>
+</div>
+
+<form action="{% url 'signUp' %}" method="post">
+    {% csrf_token %}
+    <label for="fname">UserName:</label>
+    <input type="text" class="fname" placeholder="Enter your Name" name='uname'>
+    <label for="mail">Email:</label>
+    <input type="email" class="mail" placeholder="Enter Email" name='email'>
+    <label for="password">Password: </label>
+    <input type="text" class='password' placeholder="Enter Password" name='pass'>
+    <input type="submit">
+</form>
+{% endblock %}

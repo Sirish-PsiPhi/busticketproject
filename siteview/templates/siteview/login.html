@@ -1,0 +1,16 @@
+{% extends 'baseLayout.html' %}
+
+{% block content %}
+<div>
+    <p>This is the login page</p>
+</div>
+
+<form action="{% url 'login' %}" method="post">
+    {% csrf_token %}
+    <label for="user">Username: </label>
+    <input type="text" class='user' placeholder="Enter Username" name='uname'>
+    <label for="password">Password: </label>
+    <input type="text" class='password' placeholder="Enter Password" name='password'>
+    <input type="submit">
+</form>
+{% endblock %}
