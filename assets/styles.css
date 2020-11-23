@@ -1,5 +1,5 @@
 body{
-    background-color: #0051ff;
+    background-color: #3700ffc0;
 }
 
 .header_cutomer_care_email{
@@ -13,9 +13,20 @@ body{
     text-align: right;
     float: right;
 }
-.btn btn-primary btn-sm{
-    padding: 15px;
+
+.flable{
+    padding: 10px;
+    margin: 25px;
 }
-.btn btn-secondary btn-sm{
-    padding: 15px;
+
+.lemail{
+    margin: 0px 25px;
+}
+
+.lpass{
+    margin: 25px;
+}
+
+.lsubmit{
+    margin: 25px;
 }

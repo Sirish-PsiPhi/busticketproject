@@ -5,14 +5,26 @@
     <p>This is the Signup page</p>
 </div>
 
-<form action="{% url 'signUp' %}" method="post">
+<form action="{% url 'signUp' %}" method="post" class='signupform'> 
     {% csrf_token %}
-    <label for="fname">UserName:</label>
-    <input type="text" class="fname" placeholder="Enter your Name" name='uname'>
-    <label for="mail">Email:</label>
-    <input type="email" class="mail" placeholder="Enter Email" name='email'>
-    <label for="password">Password: </label>
-    <input type="text" class='password' placeholder="Enter Password" name='pass'>
-    <input type="submit">
+    <div>
+        <label for="fname" class='flable'>UserName:</label>
+        <input type="text" class="fname" placeholder="Enter your Name" name='uname'>
+    </div>
+    <div>
+        <label for="mail" class='lemail'>Email:</label>
+        <input type="email" class="mail" placeholder="Enter Email" name='email'>
+    </div>
+    <div>
+        <label for="password" class="lpass">Password: </label>
+        <input type="text" class='password' placeholder="Enter Password" name='pass'>
+    </div>
+    <div>
+        <input type="submit" class="bsubmit">
+    </div>
 </form>
+
+<div>
+    <p>Already a User? <a href="//127.0.0.1:8000/login">Login</a></p>
+</div>
 {% endblock %}

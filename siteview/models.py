@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.contrib.auth.models import User
 # Create your models here.
 class Bus(models.Model):
 
@@ -29,3 +29,11 @@ class AvailableBusRoute(models.Model):
 
     def __str__(self):
         return str(self.jDate)
+
+class BookedTicket(models.Model):
+
+    bID = models.ForeignKey(Bus, on_delete=models.CASCADE)
+    rID = models.ForeignKey(Route, on_delete=models.CASCADE)
+    uID = models.ForeignKey(User, on_delete=models.CASCADE)
+    booked = models.IntegerField()
+    amount = models.IntegerField(null=True)
