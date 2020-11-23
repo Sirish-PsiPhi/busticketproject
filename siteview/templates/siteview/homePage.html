@@ -27,6 +27,11 @@
       <span class="sr-only">Next</span>
     </a>
   </div>
+  <div></div>
 
+  {% for a in bus %}
+    <div>{{ a.rID }}</div>
+    <div>{{ a.source }}</div>
+  {% endfor %}
 {% endblock %}
 

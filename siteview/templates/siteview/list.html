@@ -1,0 +1,15 @@
+{% extends 'baseLayout.html' %}
+
+{% block content %}
+<p>list view</p>
+
+{% for a in bus %}
+<div class="listofbus">
+    <p>{{ a.bID }}</p>
+    <p>{{ a.bID.busType }}</p>
+    <p>{{ a.jTime }}</p>
+    <p>{{ a.rID.source }}</p>
+    <p>{{ a.rID.destination }}</p>
+</div>
+{% endfor %}
+{% endblock %}

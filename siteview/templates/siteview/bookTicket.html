@@ -5,5 +5,24 @@
 <div>
     <p>Hello</p>
 </div>
+<!-- <form> -->
+<form action="{% url 'booktic' %}" method="post">
+    {% csrf_token %}
+    <label for="source">Source: </label>
+    <input type="text" class="source" placeholder="Enter Source" name="source">
+    <label for="destination">Destination: </label>
+    <input type="text" class="destination" placeholder="Enter Destination" name="dest">
+    <label for="date">Date: </label>
+    <input type="date" class="date" name="date">
+    <input type="submit">
+</form>
+<div><p></p></div>
+
+{% for b in bus %}
+    <div>
+        {{b.bID.busType}}
+        {{b.rID.source}}
+    </div>
+{% endfor %}
 
 {% endblock %}

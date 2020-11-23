@@ -8,7 +8,7 @@ class Bus(models.Model):
     seats = models.IntegerField()
 
     def __str__(self):
-        return self.busType
+        return self.bID
 
 
 class Route(models.Model):
@@ -18,7 +18,7 @@ class Route(models.Model):
     destination = models.CharField(max_length=50)
 
     def __str__(self):
-        return "From: " + self.source + " \nTo: " + self.destination
+        return self.rID
 
 class AvailableBusRoute(models.Model):
 

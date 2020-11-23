@@ -7,10 +7,16 @@
 
 <form action="{% url 'login' %}" method="post">
     {% csrf_token %}
+    {% if request.GET.next %}
+        <input type="hidden" name="next" value="{{ request.GET.next }}">
+    {% endif %}
     <label for="user">Username: </label>
     <input type="text" class='user' placeholder="Enter Username" name='uname'>
     <label for="password">Password: </label>
     <input type="text" class='password' placeholder="Enter Password" name='password'>
     <input type="submit">
 </form>
+<div>
+    <p>New User? <a href="//127.0.0.1:8000/signup">Signup</a></p>
+</div>
 {% endblock %}

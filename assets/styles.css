@@ -30,3 +30,7 @@ body{
 .lsubmit{
     margin: 25px;
 }
+
+.listofbus p{
+    display: inline;
+}
