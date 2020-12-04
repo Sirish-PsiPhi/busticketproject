@@ -1,0 +1,20 @@
+{% extends 'baseLayout.html' %}
+
+{% block content %}
+
+<div>
+    <h1>Add Route</h1>
+</div>
+
+<form action="{% url 'routeadd' %}" method="post">
+    {% csrf_token %}
+    <input type="text" placeholder="Enter rID" name="rid">
+    <input type="text" placeholder="Enter source" name="source">
+    <input type="text" placeholder="Enter destination" name="destination">
+    <button type="submit">Add</button>
+</form>
+<br><br>
+{{added}}
+{{addroute}}
+<a href="{% url 'route' %}">Go back?</a>
+{% endblock %}

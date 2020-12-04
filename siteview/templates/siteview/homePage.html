@@ -30,8 +30,11 @@
   <div></div>
 
   {% for a in bus %}
+    <div>{{ a.bID }}</div>
     <div>{{ a.rID }}</div>
-    <div>{{ a.source }}</div>
+    <div>{{ a.uID }}</div>
   {% endfor %}
+  {{admin.error}}
+  {{changed}}
 {% endblock %}
 

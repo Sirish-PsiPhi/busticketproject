@@ -22,7 +22,7 @@
              
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         {% if request.user.is_active %}
-        <a class="navbar-brand">Welcome: {{ request.user }}</a>
+        <a class="navbar-brand">Welcome {{ request.user }}</a>
         {% else %}
         <a class="navbar-brand">Welcome</a>
         {% endif %}
@@ -35,16 +35,17 @@
             <a class="nav-link" href="//127.0.0.1:8000/bookticket">Book Ticket</a>
             <a class="nav-link" href="//127.0.0.1:8000/seeroutes">See Available Routes</a>
             {% if request.user.is_active %}
-            <a class="nav-link" href="">Booked Ticket History</a>
+            <a class="nav-link" href="//127.0.0.1:8000/history">Booked Ticket History</a>
             {% endif %}
           </div>
         </div>
         {% if request.user.is_active %}
         <button type="button" class="btn btn-primary btn-sm" id="signout" onclick="location.href = '//127.0.0.1:8000/signout';">Sign Out</button>
+        <a href="//127.0.0.1:8000/siteadmin">Admin?</a>
         {% else %}
         <button type="button" class="btn btn-primary btn-sm" id="signup" onclick="location.href = '//127.0.0.1:8000/signup';">Sign Up</button>
         <button type="button" class="btn btn-secondary btn-sm" id="login" onclick="location.href = '//127.0.0.1:8000/login';">Login</button>
-        <a href="//127.0.0.1:8000/admin">Admin?</a>
+        <a href="//127.0.0.1:8000/siteadmin">Admin?</a>
         {% endif %}
       </nav>
 

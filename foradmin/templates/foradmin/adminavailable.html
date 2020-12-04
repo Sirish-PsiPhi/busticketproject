@@ -1,0 +1,60 @@
+{% extends 'baseLayout.html' %}
+
+{% block content %}
+<div>
+    <h1>Available</h1>
+</div>
+{% if availables %}
+<table class="table table-striped">
+    <thead>
+        <td>ID</td>
+        <td>Route ID</td>
+        <td>BUS ID</td>
+        <td>Journey Time</td>
+        <td>Journey Date</td>
+    </thead>
+{% for a in availables %}
+    <tr>
+        <td>{{ a.id }}</td>
+        <td>{{ a.rID }}</td>
+        <td>{{ a.bID }}</td>
+        <td>{{ a.jDate }}</td>
+        <td>{{ a.jTime }}</td>
+    </tr>
+{% endfor %}
+</table>
+<div>
+    <label for="addaroutes">Add Available Routes?</label>
+    <button onclick="location.href = '//127.0.0.1:8000/siteadmin/available/add';"name="addaroutes">Click Here</button>
+</div>
+
+<div>
+    <label for="alteraroutes">Change Available Routes?</label>
+</div>
+<form action="{% url 'change' %}" method="post">
+    {% csrf_token %}
+    <input type="text" placeholder="Enter Available Route ID" name="id">
+    <input type="text" placeholder="Enter Bid to change to"name='bid'>
+    <input type="date" placeholder="Enter jDate to change to"name='jdate'>
+    <input type="time" placeholder="Enter time to change to"name='time'>
+    <button type="submit">Change</button>
+</form>
+
+<div>
+    <label for="deletearoutes">Delete Available Routes?</label>
+</div>
+<form action="{% url 'delete' %}" method="post">
+    {% csrf_token %}
+    <input type="text" placeholder="Enter Available Route ID to delete" name='id'>
+    <button type="submit">Delete</button>
+</form>
+<a href="//127.0.0.1:8000/siteadmin">Go Back?</a>
+{{changed}}
+{% else %}
+{{deletedaroute}}
+{{changedaroute}}
+{{changed}}
+{{deleted}}
+<a href="//127.0.0.1:8000/siteadmin/available">Go Back?</a>
+{% endif %}
+{% endblock %}

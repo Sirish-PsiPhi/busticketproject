@@ -2,14 +2,48 @@
 
 {% block content %}
 <p>list view</p>
-
+{% if bus %}
+<table class="table table-striped">
+    <thead>
+        <td>BUS ID</td>
+        <td>BUS Type</td>
+        <td>Journey Time</td>
+        <td>Source</td>
+        <td>Destination</td>
+        <td>Seats Available</td>
+        <td>Route ID</td>
+    </thead>
 {% for a in bus %}
-<div class="listofbus">
-    <p>{{ a.bID }}</p>
-    <p>{{ a.bID.busType }}</p>
-    <p>{{ a.jTime }}</p>
-    <p>{{ a.rID.source }}</p>
-    <p>{{ a.rID.destination }}</p>
-</div>
+    <tr>
+    <td>{{ a.bID }}</td>
+    <td>{{ a.bID.busType }}</td>
+    <td>{{ a.jTime }}</td>
+    <td>{{ a.rID.source }}</td>
+    <td>{{ a.rID.destination }}</td>
+    <td>{{ a.bID.seats }}</td>
+    <td>{{ a.rID }}</td>
+</tr>
 {% endfor %}
+</table>
+<form action="{% url 'book' %}" method="post">
+    <h3>Choose bus to book</h3>
+    {% csrf_token %}
+    <label for="bid">Bus ID: </label>
+    <input type="text" placeholder="select the bus ID" name="bid">
+    <label for="seats">No. of Seats: </label>
+    <input type="number" placeholder="select the number of seats" name="seats">
+    <label for="rid">Route ID: </label>
+    <input type="text" placeholder="select the route ID" name="rid">
+    <br>
+    <br>
+    <div class="pull-right">
+        <button type="submit" class="btn btn-primary float-left">Book bus</button>
+    </div>
+
+</form>
+
+{% else %}
+{{ no.status}}
+
+{% endif %}
 {% endblock %}

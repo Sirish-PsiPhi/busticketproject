@@ -1,0 +1,21 @@
+{% extends 'baseLayout.html' %}
+
+{% block content %}
+
+<div>
+    <h1>Add Available Routes</h1>
+</div>
+
+<form action="{% url 'add' %}" method="post">
+    {% csrf_token %}
+    <input type="text" placeholder="Enter rID" name="rid">
+    <input type="text" placeholder="Enter bID" name="bid">
+    <input type="date" placeholder="Enter jDate" name="date">
+    <input type="time" placeholder="Enter jTime" name="time">
+    <button type="submit">Add</button>
+</form>
+<br><br>
+{{route}}
+{{addaroute}}
+<a href="{% url 'avail' %}">Go back?</a>
+{% endblock %}

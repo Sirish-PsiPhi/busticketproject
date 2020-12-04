@@ -1,0 +1,32 @@
+{% extends 'baseLayout.html' %}
+
+{% block content %}
+<div>
+    <h1>This is the admin stuff</h1>
+</div>
+{% if admin %}
+{{admin}}
+{% else %}
+<div>
+
+    <button onclick="location.href = '{% url 'bus' %}';"name="addaroutes">BUS</button>
+</div>
+<div>
+    
+    <button onclick="location.href = '{% url 'route' %}';"name="addaroutes">ROUTE</button>
+</div>
+<div>
+
+    <button onclick="location.href = '{% url 'ticket' %}';"name="addaroutes">TICKET</button>
+</div>
+<div>
+
+    <button onclick="location.href = '{% url 'user' %}';"name="addaroutes">USER</button>
+</div>
+<div>
+
+    <button onclick="location.href = '{% url 'avail' %}';"name="addaroutes">AVILABLE</button>
+</div>
+
+{% endif %}
+{% endblock %}

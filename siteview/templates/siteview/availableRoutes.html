@@ -2,16 +2,27 @@
 
 {% block content %}
 
-<div>
-    <p>This is the available routes</p>
+<table class="table table-striped">
+    <thead>
+        <td>Route ID</td>
+        <td>Bus Type</td>
+        <td>Source</td>
+        <td>Destination</td>
+        <td>Journey Date</td>
+        <td>Journey Time</td>
+        <td>Remaining Seats</td>
+    </thead>
     {% for route in avail %}
-    <div>
-        <p> {{ route.rID }} </p>
-        <p> Bus type {{ route.bID }} </p>
-        <p> Journey Date {{ route.jDate }} </p>
-        <p> Journey Time{{ route.jTime }} </p>
-    </div>
+    <tr>
+        <td> {{ route.rID }}</td> 
+       <td> {{ route.bID.busType }}</td>
+       <td>{{ route.rID.source }}</td>
+       <td>{{ route.rID.destination }}</td> 
+        <td> {{ route.jDate }}</td> 
+       <td>{{ route.jTime }}</td>  
+        <td> {{ route.bID.seats }}</td>
+    </tr>
     {% endfor %}
-</div>
+</table>
 
 {% endblock %}

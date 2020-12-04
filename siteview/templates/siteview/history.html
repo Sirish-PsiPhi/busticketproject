@@ -1,0 +1,38 @@
+{% extends 'baseLayout.html' %}
+
+{% block content %}
+<table class="table table-striped">
+    <thead>
+        <td>Ticket ID</td>
+        <td>BUS ID</td>
+        <td>Route ID</td>
+        <td>Source</td>
+        <td>Destination</td>
+        <td>Bus Type</td>
+        <td>No. of seats booked</td>
+        <td>Total Amount</td>
+        <td>Booking Status</td>
+    </thead>
+{% for book in books %}
+ 
+    <tr>
+        <td>{{ book.tID }}</td>
+        <td>{{ book.bID }}</td>
+        <td>{{ book.rID }}</td>
+        <td>{{ book.rID.source }}</td>
+        <td>{{ book.rID.destination }}</td>
+        <td>{{ book.bID.busType }}</td>
+        <td>{{ book.booked }}</td>
+        <td>{{ book.amount }}</td>
+        <td>{{ book.status }}</td>
+    </tr>
+{% endfor %}
+</table>
+<h2>Cancel Ticket?</h2>
+<form action="{% url 'cancel' %}" method="post">
+    {% csrf_token %}
+    <label for="bid">Ticket ID:</label>
+    <input type="text" placeholder="Enter Ticket ID" name="bid">
+    <button type="submit">Cancel</button>
+</form>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends 'baseLayout.html' %}
+
+{% block content %}
+<div>
+    <h1>Ticket</h1>
+</div>
+{% if tickets %}
+<table class="table table-striped">
+    <thead>
+        <td>Ticket ID</td>
+        <td>BUS ID</td>
+        <td>Route ID</td>
+        <td>Amount</td>
+        <td>Booked</td>
+        <td>Status</td>
+    </thead>
+{% for ticket in tickets %}
+<tr>
+    <td>{{ ticket.tID }}</td>
+    <td>{{ ticket.bID }}</td>
+    <td>{{ ticket.rID }}</td>
+    <td>{{ ticket.amount }}</td>
+    <td>{{ ticket.booked }}</td>
+    <td>{{ ticket.status }}</td>
+</tr>
+
+{% endfor %}
+</table>
+<div>
+    <label for="alteraroutes">Change a Ticket Status?</label>
+</div>
+<form action="{% url 'ticchange' %}" method="post">
+    {% csrf_token %}
+    <input type="text" placeholder="Enter Tid to select"name='tid'>
+    <input type="text" placeholder="Enter Status" name="status">
+    <button type="submit">Change</button>
+</form>
+<a href="//127.0.0.1:8000/siteadmin">Go Back?</a>
+{% else %}
+{{changed}}
+<a href="//127.0.0.1:8000/siteadmin/ticket">Go Back?</a>
+{% endif %}
+{% endblock %}

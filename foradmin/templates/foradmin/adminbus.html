@@ -1,0 +1,58 @@
+{% extends 'baseLayout.html' %}
+
+{% block content %}
+<div>
+    <h1>Bus</h1>
+</div>
+{% if buss %}
+<table class="table table-striped">
+    <thead>
+        <td>BUS ID</td>
+        <td>BUS TYPE</td>
+        <td>Seats</td>
+        <td>Cost Per Seat</td>
+    </thead>
+{% for bus in buss %}
+    <tr>
+        <td>{{ bus.bID }}</td>
+        <td>{{ bus.busType }}</td>
+        <td>{{ bus.seats }}</td>
+        <td>{{ bus.costpseat }}</td>
+    </tr>
+{% endfor %}
+</table>
+<div>
+    <label for="addabus">Add New Bus?</label>
+    <button onclick="location.href = '//127.0.0.1:8000/siteadmin/bus/add';"name="addabus">Click Here</button>
+</div>
+
+<div>
+    <label for="alteraroutes">Change a Bus?</label>
+</div>
+
+<form action="{% url 'buschange' %}" method="post">
+    {% csrf_token %}
+    <input type="text" placeholder="Enter Bid to select"name='bid'>
+    <input type="text" placeholder="Enter busType to change to"name='bustype'>
+    <input type="number" placeholder="Enter seats to change to"name='seats'>
+    <input type="number" placeholder="Enter cost to change to" name="cost">
+    <button type="submit">Change</button>
+</form>
+
+<div>
+    <label for="deletearoutes">Delete a Bus?</label>
+</div>
+<form action="{% url 'busdelete' %}" method="post">
+    {% csrf_token %}
+    <input type="text" placeholder="Enter bus ID to delete" name='bid'>
+    <button type="submit">Delete</button>
+</form>
+<a href="//127.0.0.1:8000/siteadmin">Go Back?</a>
+{% else %}
+{{changed}}
+{{deleted}}
+{{deletedabus}}
+{{changedabus}}
+<a href="//127.0.0.1:8000/siteadmin/bus">Go Back?</a>
+{% endif %}
+{% endblock %}

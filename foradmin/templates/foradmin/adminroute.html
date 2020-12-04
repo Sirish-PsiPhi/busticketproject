@@ -1,0 +1,53 @@
+{% extends 'baseLayout.html' %}
+
+{% block content %}
+<div><h1>Route</h1></div>
+{% if routes %}
+<table class="table table-striped">
+    <thead>
+        <td>Route ID</td>
+        <td>Source</td>
+        <td>Destination</td>
+    </thead>
+{% for route in routes %}
+<tr>
+    <td>{{ route.rID }}</td>
+    <td>{{ route.source }}</td>
+    <td>{{ route.destination }}</td>
+</tr>
+{% endfor %}
+</table>
+<div>
+    <label for="addabus">Add New Route?</label>
+    <button onclick="location.href = '//127.0.0.1:8000/siteadmin/route/add';"name="addabus">Click Here</button>
+</div>
+
+<div>
+    <label for="alteraroutes">Change a Route?</label>
+</div>
+
+<form action="{% url 'routechange' %}" method="post">
+    {% csrf_token %}
+    <input type="text" placeholder="Enter Rid to select"name='rid'>
+    <input type="text" placeholder="Enter source to change to"name='source'>
+    <input type="text" placeholder="Enter destination to change to"name='destination'>
+    <button type="submit">Change</button>
+</form>
+
+<div>
+    <label for="deletearoutes">Delete a Route?</label>
+</div>
+<form action="{% url 'routedelete' %}" method="post">
+    {% csrf_token %}
+    <input type="text" placeholder="Enter Route ID to delete" name='rid'>
+    <button type="submit">Delete</button>
+</form>
+<a href="//127.0.0.1:8000/siteadmin">Go back?</a>
+{% else %}
+{{deletedaroute}}
+{{changedaroute}}
+{{changed}}
+{{deleted}}
+<a href="{% url 'route' %}">Go back?</a>
+{% endif %}
+{% endblock %}

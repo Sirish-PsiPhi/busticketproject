@@ -7,10 +7,12 @@ urlpatterns = [
     path('', views.homePage),
     path('home/', views.homePage),
     path('bookticket/', views.bookTicket, name='booktic'),
-    #path('findbus/',views.findbus),
+    path('book/',views.bookbus, name='book'),
     path('seeroutes/', views.seeRoutes),
     path('signup/', views.signUp, name='signUp'),
     path('login/', views.signin, name='login'),
-    path('signout/', views.signOut, name='signout')
+    path('signout/', views.signOut, name='signout'),
+    path('history/',views.history),
+    path('cancel/',views.cancel,name='cancel')
     
 ]

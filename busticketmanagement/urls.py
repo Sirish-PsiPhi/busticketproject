@@ -19,7 +19,9 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('siteadmin/',include('foradmin.urls')),
     path('', include('siteview.urls')),
+    
 ]
 
 urlpatterns += staticfiles_urlpatterns()

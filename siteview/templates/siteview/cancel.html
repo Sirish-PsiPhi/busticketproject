@@ -1,0 +1,37 @@
+{% extends 'baseLayout.html' %}
+
+{% block content %}
+    {% if book %}
+    <div>Ticket canceled succesfully</div>
+    
+    <table class="table table-striped">
+        <thead>
+            <td>Ticket ID</td>
+            <td>BUS ID</td>
+            <td>Route ID</td>
+            <td>Source</td>
+            <td>Destination</td>
+            <td>Bus Type</td>
+            <td>No. of seats booked</td>
+            <td>Total Amount</td>
+            <td>Booking Status</td>
+        </thead>
+    {% for boo in book %}
+     
+        <tr>
+            <td>{{ boo.tID }}</td>
+            <td>{{ boo.bID }}</td>
+            <td>{{ boo.rID }}</td>
+            <td>{{ boo.rID.source }}</td>
+            <td>{{ boo.rID.destination }}</td>
+            <td>{{ boo.bID.busType }}</td>
+            <td>{{ boo.booked }}</td>
+            <td>{{ boo.amount }}</td>
+            <td>{{ boo.status }}</td>
+        </tr>
+    {% endfor %}
+    </table>
+    {% else %}
+        <div>{{ done.status }}</div>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'baseLayout.html' %}
+
+{% block content %}
+
+<div>
+    <h1>Add Bus</h1>
+</div>
+
+<form action="{% url 'busadd' %}" method="post">
+    {% csrf_token %}
+    <input type="text" placeholder="Enter bID" name="bid">
+    <input type="text" placeholder="Enter busType" name="bustype">
+    <input type="number" placeholder="Enter seats" name="seats">
+    <input type="number" placeholder="Enter cost" name="cost">
+    <button type="submit">Add</button>
+</form>
+<br><br>
+{{added}}
+{{addbus}}
+<a href="{% url 'bus' %}">Go back?</a>
+{% endblock %}
