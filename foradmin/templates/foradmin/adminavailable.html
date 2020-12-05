@@ -14,6 +14,7 @@
         <td>BUS ID</td>
         <td>Journey Time</td>
         <td>Journey Date</td>
+        <td>Seats</td>
     </thead>
 {% for a in availables %}
     <tr>
@@ -22,6 +23,7 @@
         <td>{{ a.bID }}</td>
         <td>{{ a.jDate }}</td>
         <td>{{ a.jTime }}</td>
+        <td>{{ a.seats }}</td>
     </tr>
 {% endfor %}
 </table>
@@ -39,6 +41,7 @@
     <input type="text" placeholder="Enter Bid to change to"name='bid' class="busformchange">
     <input type="date" placeholder="Enter jDate to change to"name='jdate' class="busformchange">
     <input type="time" placeholder="Enter time to change to"name='time' class="busformchange">
+    <input type="number" placeholder="Enter seats to change"name='seats'class='busformchange'>
     <button type="submit"class='busformchangebut'>Change</button>
 </form>
 </div>
@@ -58,7 +61,10 @@
 <p class="busfont">{{deletedaroute.error}}</p>
 <p class="busfont">{{changedaroute.error}}</p>
 <p class="busfont">{{changed.message}}</p>
-<p class="busfont">{{changed}}</p>
+<p class="busfont">{{changed.bid}}</p>
+<p class="busfont">{{changed.seats}}</p>
+<p class="busfont">{{changed.time}}</p>
+<p class="busfont">{{changed.date}}</p>
 <p class="busfont">{{deleted.message}}</p>
 <p class="busfont">{{deleted}}</p>
 <a href="//127.0.0.1:8000/siteadmin/available" class="bushref">Go Back?</a>

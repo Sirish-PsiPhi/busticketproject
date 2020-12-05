@@ -51,14 +51,15 @@ def addARoute(request):
         bid = request.POST.get('bid')
         date = request.POST.get('date')
         time = request.POST.get('time')
+        seats = request.POST.get('seats')
         added = {}
-        if rid and bid and date and time:
+        if rid and bid and date and time and seats:
             rrid = Route.objects.filter(rID=rid)
             bbid = Bus.objects.filter(bID=bid)
             if rrid and bbid:
-                newroute = AvailableBusRoute.objects.create(bID=bbid[0],rID=rrid[0],jDate=date,jTime=time)
+                newroute = AvailableBusRoute.objects.create(bID=bbid[0],rID=rrid[0],jDate=date,jTime=time,seats=seats)
             #route = AvailableBusRoute.objects.filter(rID=rrid[0].rID,bID=bbid[0].bID)
-                added['all'] = "A new available Route with Rid "+str(rid) + ' Bid ' + str(bid) + ' date ' + str(date) + ' and time' + str(time) + ' has been created'
+                added['all'] = "A new available Route with Rid "+str(rid) + ' Bid ' + str(bid) + ' date ' + str(date) + ' seats '+ str(seats)+' and time' + str(time) +  ' has been created'
                 return render(request, 'foradmin/addaroute.html',{'route':added})
             else:
                 added['error'] = "That Bid or Rid does not exists"
@@ -75,40 +76,90 @@ def addARoute(request):
 def changeAroute(request):
     if request.method == 'POST':
         id = request.POST.get('id')
-        #rid = request.POST.get('rid')
         bid = request.POST.get('bid')
         date = request.POST.get('jdate')
         time = request.POST.get('time')
+        seats = request.POST.get('seats')
         changed = {}
         if id:
             toChange = AvailableBusRoute.objects.filter(id=id)
             changed['message'] = "The following this have been Updated"
             if bid and time:
-                changed['bid'] = bid
-                changed['time'] = time
+                changed['bid'] = "BID "+str(bid)
+                changed['time'] = "Time "+str(time)
                 toChange.update(bID=bid,jTime=time)
                 return render(request, 'foradmin/adminavailable.html',{'changed':changed})
             elif bid and date:
-                changed['bid'] = bid
-                changed['date'] = date
+                changed['bid'] = "BID "+str(bid)
+                changed['date'] = "Date "+str(date)
                 toChange.update(bID=bid,jDate=date)
                 return render(request, 'foradmin/adminavailable.html',{'changed':changed})
             elif date and time:
-                changed['date'] = date
-                changed['time'] = time
+                changed['date'] = "Date "+str(date)
+                changed['time'] = "Time "+str(time)
                 toChange.update(jDate=date,jTime=time)
                 return render(request, 'foradmin/adminavailable.html',{'changed':changed})
+            elif bid and seats:
+                changed['bid'] = "BID "+str(bid)
+                changed['seats'] = "Seats "+str(seats)
+                toChange.update(bID=bid,seats=seats)
+                return render(request, 'foradmin/adminavailable.html',{'changed':changed})
+            elif date and seats:
+                changed['date'] = "Date "+str(date)
+                changed['seats'] = "Seats "+str(seats)
+                toChange.update(jDate=date,seats=seats)
+                return render(request, 'foradmin/adminavailable.html',{'changed':changed})
+            elif seats and time:
+                changed['seats'] = "Seats "+str(seats)
+                changed['time'] = "Time "+str(time)
+                toChange.update(seats=seats,jTime=time)
+                return render(request, 'foradmin/adminavailable.html',{'changed':changed})
             elif bid:
-                changed['bid'] = bid
+                changed['bid'] = "BID "+str(bid)
                 toChange.update(bID=bid)
                 return render(request, 'foradmin/adminavailable.html',{'changed':changed})
             elif date:
-                changed['date'] = date
+                changed['date'] = "Date "+str(date)
                 toChange.update(jDate=date)
                 return render(request, 'foradmin/adminavailable.html',{'changed':changed})
             elif time:
-                changed['time'] = time
+                changed['time'] = "Time "+str(time)
                 toChange.update(jTime=time)
+                return render(request, 'foradmin/adminavailable.html',{'changed':changed})
+            elif seats:
+                changed['seats'] = "Seats "+str(seats)
+                toChange.update(seats=seats)
+                return render(request, 'foradmin/adminavailable.html',{'changed':changed})
+            elif bid and time and date and seats:
+                changed['bid'] = "BID "+str(bid)
+                changed['seats'] = "Seats "+str(seats)
+                changed['date'] = "Date "+str(date)
+                changed['time'] = "Time "+str(time)
+                toChange.update(bID=bid,seats=seats,jTime=time,jDate=date)
+                return render(request, 'foradmin/adminavailable.html',{'changed':changed})
+            elif bid and time and date:
+                changed['bid'] = "BID "+str(bid)
+                changed['date'] = "Date "+str(date)
+                changed['time'] = "Time "+str(time)
+                toChange.update(bID=bid,jTime=time,jDate=date)
+                return render(request, 'foradmin/adminavailable.html',{'changed':changed})
+            elif bid and time and seats:
+                changed['bid'] = "BID "+str(bid)
+                changed['seats'] = "Seats "+str(seats)
+                changed['time'] = "Time "+str(time)
+                toChange.update(bID=bid,seats=seats,jTime=time)
+                return render(request, 'foradmin/adminavailable.html',{'changed':changed})
+            elif bid and date and seats:
+                changed['bid'] = bid
+                changed['seats'] = "Seats "+str(seats)
+                changed['date'] = "Date "+str(date)
+                toChange.update(bID=bid,seats=seats,jDate=date)
+                return render(request, 'foradmin/adminavailable.html',{'changed':changed})
+            elif time and date and seats:
+                changed['seats'] = "Seats "+str(seats)
+                changed['date'] = "Date "+str(date)
+                changed['time'] = "Time "+str(time)
+                toChange.update(seats=seats,jTime=time,jDate=date)
                 return render(request, 'foradmin/adminavailable.html',{'changed':changed})
             else:
                 changed['error'] = "One of the fields is necessary to change"
@@ -140,14 +191,13 @@ def addBus(request):
     if request.method == 'POST':
         bid = request.POST.get('bid')
         bustype = request.POST.get('bustype')
-        seats = request.POST.get('seats')
         cost = request.POST.get('cost')
         added = {}
-        if bid and bustype and seats and cost:
+        if bid and bustype and cost:
             if not Bus.objects.filter(bID=bid).exists():
                 added['message'] = "The following Bus has beed added with"
-                addBus = Bus.objects.create(bID=bid,busType=bustype,seats=seats,costpseat=cost)
-                added['add'] = "bid "+str(bid) + " bustype " + str(bustype) + " seats " + str(seats) + " cost " + str(cost) + " "
+                addBus = Bus.objects.create(bID=bid,busType=bustype,costpseat=cost)
+                added['add'] = "bid "+str(bid) + " bustype " + str(bustype) +  " cost " + str(cost) + " "
                 return render(request, 'foradmin/addbus.html',{'added':added})
             else:
                 added['error'] = "That Bid already exists"
@@ -167,7 +217,7 @@ def deleteBus(request):
         if bid:
             if Bus.objects.filter(bID=bid).exists():
                 Bus.objects.filter(bID=bid).delete()
-                deleted['del'] = str(bid) + "Has been deleted"
+                deleted['del'] = str(bid) + " Has been deleted"
                 return render(request, 'foradmin/adminbus.html',{'deleted':deleted})
             else:
                 deleted['error'] = "That bus does not exists"
@@ -183,37 +233,16 @@ def changeBus(request):
     if request.method == 'POST':
         bid = request.POST.get('bid')
         bustype = request.POST.get('bustype')
-        seats = request.POST.get('seats')
         cost = request.POST.get('cost')
         changed = {}
         if bid:
             if Bus.objects.filter(bID=bid).exists():
                 changeBus = Bus.objects.filter(bID=bid)
                 changed['message'] = "That following things have been Updated"
-                if bustype and cost and seats:
+                if bustype and cost:
                     changed['bustype'] = "Bus Type"+str(bustype)
-                    changed['seats'] = "Seats"+str(seats)
                     changed['cost'] = "Cost"+str(cost)
-                    changeBus.update(busType=bustype,seats=seats,costpseat=cost)
-                    return render(request, 'foradmin/adminbus.html',{'changed':changed})
-                elif bustype and seats:
-                    changed['bustype'] = "Bus Type"+str(bustype)
-                    changed['seats'] = "Seats"+str(seats)
-                    changeBus.update(busType=bustype,seats=seats)
-                    return render(request, 'foradmin/adminbus.html',{'changed':changed})
-                elif seats and cost:
-                    changed['seats'] = "Seats"+str(seats)
-                    changed['cost'] = "Cost"+str(cost)
-                    changeBus.update(seats=seats,costpseat=cost)
-                    return render(request, 'foradmin/adminbus.html',{'changed':changed})
-                elif bustype and cost:
-                    changed['cost'] = "Cost"+str(cost)
-                    changed['bustype'] = "Bus Type"+str(bustype)
                     changeBus.update(busType=bustype,costpseat=cost)
-                    return render(request, 'foradmin/adminbus.html',{'changed':changed})
-                elif seats:
-                    changed['seats'] = "Seats"+str(seats)
-                    changeBus.update(seats=seats)
                     return render(request, 'foradmin/adminbus.html',{'changed':changed})
                 elif bustype:
                     changed['bustype'] = "Bus Type"+str(bustype)

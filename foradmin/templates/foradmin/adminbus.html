@@ -10,14 +10,12 @@
     <thead>
         <td>BUS ID</td>
         <td>BUS TYPE</td>
-        <td>Seats</td>
         <td>Cost Per Seat</td>
     </thead>
 {% for bus in buss %}
     <tr>
         <td>{{ bus.bID }}</td>
         <td>{{ bus.busType }}</td>
-        <td>{{ bus.seats }}</td>
         <td>{{ bus.costpseat }}</td>
     </tr>
 {% endfor %}
@@ -35,7 +33,6 @@
     {% csrf_token %}
     <input type="text" placeholder="Enter Bid to select"name='bid'class="busformchange">
     <input type="text" placeholder="Enter busType to change to"name='bustype'class="busformchange">
-    <input type="number" placeholder="Enter seats to change to"name='seats'class="busformchange">
     <input type="number" placeholder="Enter cost to change to" name="cost"class="busformchange">
     <button type="submit" class="busformchangebut">Change</button>
 </form>

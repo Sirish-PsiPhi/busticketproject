@@ -113,7 +113,7 @@ def cancel(request):
         if booked[0].status == 'Booked':
             booked.update(status='Canceled')
             seats = booked[0].booked
-            bus = Bus.objects.filter(bID=booked[0].bID)
+            bus = AvailableBusRoute.objects.filter(bID=booked[0].bID,rID=booked[0].rID)
             newseats = seats + bus[0].seats
             bus.update(seats=newseats)
             return render(request, 'siteview/cancel.html',{'book':booked})
