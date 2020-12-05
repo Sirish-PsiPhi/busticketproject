@@ -5,7 +5,7 @@ class Bus(models.Model):
 
     bID = models.CharField(primary_key=True, max_length=15)
     busType = models.CharField(max_length=50)
-    seats = models.IntegerField()
+    #seats = models.IntegerField()
     costpseat = models.IntegerField(null=True)
 
     def __str__(self):
@@ -27,7 +27,7 @@ class AvailableBusRoute(models.Model):
     bID = models.ForeignKey(Bus, on_delete=models.CASCADE)
     jDate = models.DateField()
     jTime = models.TimeField()
-
+    seats = models.IntegerField(null=True)
     def __str__(self):
         return str(self.jDate)
 

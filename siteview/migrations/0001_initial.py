@@ -31,4 +31,14 @@ class Migration(migrations.Migration):
                 ('bID', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='siteview.bus')),
             ],
         ),
+        migrations.CreateModel(
+            name='AvailableBusRoute',
+            fields=[
+                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('jDate', models.DateField()),
+                ('jTime', models.TimeField()),
+                ('bID', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='siteview.bus')),
+                ('rID', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='siteview.route')),
+            ],
+        ),
     ]

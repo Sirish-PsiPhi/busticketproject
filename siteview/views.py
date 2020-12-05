@@ -40,12 +40,16 @@ def signUp(request):
         name_s = request.POST.get('uname')
         email_s = request.POST.get('email')
         password_s = request.POST.get('pass')
-        user = User.objects.create_user(name_s, email_s, password_s,)
-        if user:
-            login(request, user)
-            return render(request, 'siteview/homePage.html')
+        if not User.objects.filter(username=name_s).exists():
+            user = User.objects.create_user(name_s, email_s, password_s,)
+            if user:
+                login(request, user)
+                return render(request, 'siteview/homePage.html')
+            else:
+                context["error"] = "Provide valid credentials"
+                return render(request, 'siteview/signUp.html', {'error':context})
         else:
-            context["error"] = "Provide valid credentials"
+            context['error'] = 'Username Already Exsists'
             return render(request, 'siteview/signUp.html', {'error':context})
 
     return render(request, 'siteview/signUp.html')
@@ -77,15 +81,15 @@ def bookbus(request):
         id = AvailableBusRoute.objects.filter(id=busid)
         rid = Route.objects.filter(rID=id[0].rID)
         bus = Bus.objects.filter(bID=id[0].bID)
-        rem = bus[0].seats
+        rem = id[0].seats
         if id:
             if rem >= int(seats_booked):
                rem -= int(seats_booked)
                userid = request.user.id
                amount = bus[0].costpseat * int(seats_booked)
                done = BookedTicket.objects.create(bID=bus[0],rID=rid[0],uID=User.objects.filter(username=request.user.username)[0],booked=seats_booked,amount=amount,status='Booked') 
-               bus.update(seats=rem)
-               return render(request, 'siteview/success.html',{'done':done,'var':id})
+               id.update(seats=rem)
+               return render(request, 'siteview/success.html',{'done':done})
             else:
                 err = {}
                 err['error'] = "That many seats are not available"
