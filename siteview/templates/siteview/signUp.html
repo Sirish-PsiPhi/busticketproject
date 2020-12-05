@@ -2,25 +2,25 @@
 
 {% block content %}
 
-
+<div class="signupdiv">
 <form action="{% url 'signUp' %}" method="post" class='signupform'> 
     {% csrf_token %}
     <div>
-        <label for="fname" class='flable'>UserName:</label>
-        <input type="text" class="fname" placeholder="Enter your Name" name='uname'>
+        <label for="fname" class="busfont">UserName:</label>
+        <input type="text" class="busformchange" placeholder="Enter your Name" name='uname'>
     </div>
     <div>
-        <label for="mail" class='lemail'>Email:</label>
-        <input type="email" class="mail" placeholder="Enter Email" name='email'>
+        <label for="mail" class='busfont'>Email:</label>
+        <input type="email" class="busformchange" placeholder="Enter Email" name='email'>
     </div>
     <div>
-        <label for="password" class="lpass">Password: </label>
-        <input type="text" class='password' placeholder="Enter Password" name='pass'>
+        <label for="password" class="busfont">Password: </label>
+        <input type="password" class='busformchange' placeholder="Enter Password" name='pass'>
     </div>
     <div>
-        <input type="submit" class="bsubmit">
+        <input type="submit" class="busformchangebut">
     </div>
 </form>
-
-{{error.error}}
+</div>
+<p class="busfont">{{error.error}}</p>
 {% endblock %}

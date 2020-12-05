@@ -3,20 +3,21 @@
 {% block content %}
 
 <div>
-    <h1>Add Route</h1>
+    <h1 class="adminbus">Add Route</h1>
 </div>
-
+<div class="busdiv">
 <form action="{% url 'routeadd' %}" method="post">
     {% csrf_token %}
-    <input type="text" placeholder="Enter rID" name="rid">
-    <input type="text" placeholder="Enter source" name="source">
-    <input type="text" placeholder="Enter destination" name="destination">
-    <button type="submit">Add</button>
+    <input type="text" placeholder="Enter rID" name="rid"class='busformchange'>
+    <input type="text" placeholder="Enter source" name="source"class='busformchange'>
+    <input type="text" placeholder="Enter destination" name="destination"class='busformchange'>
+    <button type="submit" class="busformchangebut">Add</button>
 </form>
+</div>
 <br><br>
-{{added.message}}
-{{added.error}}
-{{added.all}}
-{{addroute.error}}
-<a href="{% url 'route' %}">Go back?</a>
+<p class="busfont">{{added.message}}</p>
+<p class="busfont">{{added.error}}</p>
+<p class="busfont">{{added.all}}</p>
+<p class="busfont">{{addroute.error}}</p>
+<a href="{% url 'route' %}" class="bushref">Go back?</a>
 {% endblock %}

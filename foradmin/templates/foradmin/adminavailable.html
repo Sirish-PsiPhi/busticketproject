@@ -1,9 +1,11 @@
 {% extends 'baseLayout.html' %}
 
 {% block content %}
+
 <div>
-    <h1>Available</h1>
+    <h1 class="admin">Available Bus Route Table Modification Panel</h1>
 </div>
+
 {% if availables %}
 <table class="table table-striped">
     <thead>
@@ -24,38 +26,41 @@
 {% endfor %}
 </table>
 <div>
-    <label for="addaroutes">Add Available Routes?</label>
-    <button onclick="location.href = '//127.0.0.1:8000/siteadmin/available/add';"name="addaroutes">Click Here</button>
+    <label for="addaroutes" class="busfont">Add Available Routes?</label>
+    <button onclick="location.href = '//127.0.0.1:8000/siteadmin/available/add';"name="addaroutes"class='busformchangebut'>Click Here</button>
 </div>
 
-<div>
-    <label for="alteraroutes">Change Available Routes?</label>
-</div>
+<div class="busdiv">
+    <label for="alteraroutes" class="busfont">Change Available Routes?</label>
+
 <form action="{% url 'change' %}" method="post">
     {% csrf_token %}
-    <input type="text" placeholder="Enter Available Route ID" name="id">
-    <input type="text" placeholder="Enter Bid to change to"name='bid'>
-    <input type="date" placeholder="Enter jDate to change to"name='jdate'>
-    <input type="time" placeholder="Enter time to change to"name='time'>
-    <button type="submit">Change</button>
+    <input type="text" placeholder="Enter Available Route ID" name="id" class="busformchange">
+    <input type="text" placeholder="Enter Bid to change to"name='bid' class="busformchange">
+    <input type="date" placeholder="Enter jDate to change to"name='jdate' class="busformchange">
+    <input type="time" placeholder="Enter time to change to"name='time' class="busformchange">
+    <button type="submit"class='busformchangebut'>Change</button>
 </form>
-
-<div>
-    <label for="deletearoutes">Delete Available Routes?</label>
 </div>
+<br><br>
+<div class="busdiv">
+    <label for="deletearoutes" class="busfont">Delete Available Routes?</label>
+
 <form action="{% url 'delete' %}" method="post">
     {% csrf_token %}
-    <input type="text" placeholder="Enter Available Route ID to delete" name='id'>
-    <button type="submit">Delete</button>
+    <input type="text" placeholder="Enter Available Route ID to delete" name='id' class="busformchange">
+    <button type="submit"class='busformchangebut'>Delete</button>
 </form>
-<a href="//127.0.0.1:8000/siteadmin">Go Back?</a>
+</div>
+<br>
+<a href="//127.0.0.1:8000/siteadmin" class="bushref">Go Back?</a>
 {% else %}
-{{deletedaroute.error}}
-{{changedaroute.error}}
-{{changed.message}}
-{{changed}}
-{{deleted.message}}
-{{deleted}}
-<a href="//127.0.0.1:8000/siteadmin/available">Go Back?</a>
+<p class="busfont">{{deletedaroute.error}}</p>
+<p class="busfont">{{changedaroute.error}}</p>
+<p class="busfont">{{changed.message}}</p>
+<p class="busfont">{{changed}}</p>
+<p class="busfont">{{deleted.message}}</p>
+<p class="busfont">{{deleted}}</p>
+<a href="//127.0.0.1:8000/siteadmin/available" class="bushref">Go Back?</a>
 {% endif %}
 {% endblock %}

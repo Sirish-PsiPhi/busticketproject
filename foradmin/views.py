@@ -239,10 +239,10 @@ def changeBus(request):
 def changeTicket(request):
     if request.method == 'POST':
         tid = request.POST.get('tid')
-        status = request.POST.get('status')
+        status = str(request.POST.get('status')) + " Done by Admin"
         changed = {}
         if tid:
-            if BookedTicket.objects.filter(tId=tid).exists():
+            if BookedTicket.objects.filter(tID=tid).exists():
                 changeTicket = BookedTicket.objects.filter(tID=tid)
                 if status:
                     changed['status'] = "Status Has beed Changed"

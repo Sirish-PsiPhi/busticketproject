@@ -1,8 +1,9 @@
 {% extends 'baseLayout.html' %}
 
 {% block content %}
+
 <div>
-    <h1>Bus</h1>
+    <h1 class="admin">Bus Table Modification Panel</h1>
 </div>
 {% if buss %}
 <table class="table table-striped">
@@ -22,41 +23,44 @@
 {% endfor %}
 </table>
 <div>
-    <label for="addabus">Add New Bus?</label>
-    <button onclick="location.href = '//127.0.0.1:8000/siteadmin/bus/add';"name="addabus">Click Here</button>
+    <label for="addabus" class="busfont">Add New Bus?</label>
+    <button onclick="location.href = '//127.0.0.1:8000/siteadmin/bus/add';"name="addabus" class="busformchangebut">Click Here</button>
 </div>
 
-<div>
-    <label for="alteraroutes">Change a Bus?</label>
-</div>
+<div class="busdiv">
+    <label for="alteraroutes" class="busfont">Change a Bus?</label>
+
 
 <form action="{% url 'buschange' %}" method="post">
     {% csrf_token %}
-    <input type="text" placeholder="Enter Bid to select"name='bid'>
-    <input type="text" placeholder="Enter busType to change to"name='bustype'>
-    <input type="number" placeholder="Enter seats to change to"name='seats'>
-    <input type="number" placeholder="Enter cost to change to" name="cost">
-    <button type="submit">Change</button>
+    <input type="text" placeholder="Enter Bid to select"name='bid'class="busformchange">
+    <input type="text" placeholder="Enter busType to change to"name='bustype'class="busformchange">
+    <input type="number" placeholder="Enter seats to change to"name='seats'class="busformchange">
+    <input type="number" placeholder="Enter cost to change to" name="cost"class="busformchange">
+    <button type="submit" class="busformchangebut">Change</button>
 </form>
-
-<div>
-    <label for="deletearoutes">Delete a Bus?</label>
 </div>
+<br><br>
+<div class="busdiv">
+    <label for="deletearoutes" class="busfont">Delete a Bus?</label>
+
 <form action="{% url 'busdelete' %}" method="post">
     {% csrf_token %}
-    <input type="text" placeholder="Enter bus ID to delete" name='bid'>
-    <button type="submit">Delete</button>
+    <input type="text" placeholder="Enter bus ID to delete" name='bid' class="busformchange">
+    <button type="submit" class="busformchangebut">Delete</button>
 </form>
-<a href="//127.0.0.1:8000/siteadmin">Go Back?</a>
+</div>
+<br><br>
+<a href="//127.0.0.1:8000/siteadmin" class="bushref">Go Back?</a>
 {% else %}
-{{changed.message}}
-{{changed.bustype}}
-{{changed.seats}}
-{{changed.cost}}
-{{deleted.error}}
-{{deleted.del}}
-{{deletedabus.error}}
-{{changedabus.error}}
-<a href="//127.0.0.1:8000/siteadmin/bus">Go Back?</a>
+<p class="busfont">{{changed.message}}</p>
+<p class="busfont">{{changed.bustype}}</p>
+<p class="busfont">{{changed.seats}}</p>
+<p class="busfont">{{changed.cost}}</p>
+<p class="busfont">{{deleted.error}}</p>
+<p class="busfont">{{deleted.del}}</p>
+<p class="busfont">{{deletedabus.error}}</p>
+<p class="busfont">{{changedabus.error}}</p>
+<a href="//127.0.0.1:8000/siteadmin/bus" class="bushref">Go Back?</a>
 {% endif %}
 {% endblock %}

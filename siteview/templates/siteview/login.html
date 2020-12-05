@@ -1,20 +1,22 @@
 {% extends 'baseLayout.html' %}
 
 {% block content %}
-
+<div class="signupdiv">
 <form action="{% url 'login' %}" method="post">
     {% csrf_token %}
     {% if request.GET.next %}
         <input type="hidden" name="next" value="{{ request.GET.next }}">
     {% endif %}
-    <label for="user">Username: </label>
-    <input type="text" class='user' placeholder="Enter Username" name='uname'>
-    <label for="password">Password: </label>
-    <input type="text" class='password' placeholder="Enter Password" name='password'>
-    <input type="submit">
+    <label for="user" class="busfont">Username: </label>
+    <input type="text" class='busformchange' placeholder="Enter Username" name='uname'>
+    <label for="password" class="busfont">Password: </label>
+    <input type="password" class='busformchange' placeholder="Enter Password" name='password'>
+    <input type="submit" class="busformchangebut">
 </form>
-<div>
-    <p>New User? <a href="//127.0.0.1:8000/signup">Signup</a></p>
 </div>
-{{error.error}}
+<br><br>
+<div>
+    <p class="busfont">New User? <a href="//127.0.0.1:8000/signup" class="bushref">Signup</a></p>
+</div>
+<p class="busfont">{{error.error}}</p>
 {% endblock %}

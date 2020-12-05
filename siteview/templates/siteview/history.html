@@ -28,11 +28,13 @@
     </tr>
 {% endfor %}
 </table>
+<div class="busticdiv">
 <h2>Cancel Ticket?</h2>
 <form action="{% url 'cancel' %}" method="post">
     {% csrf_token %}
-    <label for="bid">Ticket ID:</label>
-    <input type="text" placeholder="Enter Ticket ID" name="bid">
-    <button type="submit">Cancel</button>
+    <label for="bid" class="busfont">Ticket ID:</label>
+    <input type="text" placeholder="Enter Ticket ID" name="bid" class="busticchange">
+    <button type="submit" class="busformchangebut">Cancel</button>
 </form>
+</div>
 {% endblock %}

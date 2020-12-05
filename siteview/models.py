@@ -39,7 +39,7 @@ class BookedTicket(models.Model):
     uID = models.ForeignKey(User, on_delete=models.CASCADE)
     booked = models.IntegerField()
     amount = models.IntegerField(null=True)
-    status = models.CharField(max_length=15,null=True)
+    status = models.CharField(max_length=50,null=True)
 
     def __str__(self):
         return str(self.uID) 

@@ -1,7 +1,9 @@
 {% extends 'baseLayout.html' %}
 
 {% block content %}
-<div><h1>Route</h1></div>
+
+<div><h1 class="admin">Route Table Modification Panel</h1></div>
+
 {% if routes %}
 <table class="table table-striped">
     <thead>
@@ -18,40 +20,43 @@
 {% endfor %}
 </table>
 <div>
-    <label for="addabus">Add New Route?</label>
-    <button onclick="location.href = '//127.0.0.1:8000/siteadmin/route/add';"name="addabus">Click Here</button>
+    <label for="addabus" class="busfont">Add New Route?</label>
+    <button onclick="location.href = '//127.0.0.1:8000/siteadmin/route/add';"name="addabus" class="busformchangebut">Click Here</button>
 </div>
 
-<div>
-    <label for="alteraroutes">Change a Route?</label>
-</div>
+<div class="busdiv">
+    <label for="alteraroutes" class="busfont">Change a Route?</label>
+
 
 <form action="{% url 'routechange' %}" method="post">
     {% csrf_token %}
-    <input type="text" placeholder="Enter Rid to select"name='rid'>
-    <input type="text" placeholder="Enter source to change to"name='source'>
-    <input type="text" placeholder="Enter destination to change to"name='destination'>
-    <button type="submit">Change</button>
+    <input type="text" placeholder="Enter Rid to select"name='rid' class="busformchange">
+    <input type="text" placeholder="Enter source to change to"name='source' class="busformchange">
+    <input type="text" placeholder="Enter destination to change to"name='destination' class="busformchange">
+    <button type="submit" class="busformchangebut">Change</button>
 </form>
-
-<div>
-    <label for="deletearoutes">Delete a Route?</label>
 </div>
+<br><br>
+<div class="busdiv">
+    <label for="deletearoutes" class="busfont">Delete a Route?</label>
+
 <form action="{% url 'routedelete' %}" method="post">
     {% csrf_token %}
-    <input type="text" placeholder="Enter Route ID to delete" name='rid'>
-    <button type="submit">Delete</button>
+    <input type="text" placeholder="Enter Route ID to delete" name='rid' class="busformchange">
+    <button type="submit" class="busformchangebut">Delete</button>
 </form>
-<a href="//127.0.0.1:8000/siteadmin">Go back?</a>
+</div>
+<br><br>
+<a href="//127.0.0.1:8000/siteadmin" class="bushref">Go back?</a>
 {% else %}
-{{changedaroute.error}}
-{{changed.message}}
-{{changed.error}}
-{{changed.source}}
-{{changed.dest}}
-{{deletedaroute.error}}
-{{deleted.rid}}
-{{deleted.error}}
-<a href="{% url 'route' %}">Go back?</a>
+<p class="busfont">{{changedaroute.error}}</p>
+<p class="busfont">{{changed.message}}</p>
+<p class="busfont">{{changed.error}}</p>
+<p class="busfont">{{changed.source}}</p>
+<p class="busfont">{{changed.dest}}</p>
+<p class="busfont">{{deletedaroute.error}}</p>
+<p class="busfont">{{deleted.rid}}</p>
+<p class="busfont">{{deleted.error}}</p>
+<a href="{% url 'route' %}" class="bushref">Go back?</a>
 {% endif %}
 {% endblock %}

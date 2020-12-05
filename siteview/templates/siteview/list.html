@@ -1,7 +1,6 @@
 {% extends 'baseLayout.html' %}
 
 {% block content %}
-<p>list view</p>
 {% if bus %}
 <table class="table table-striped">
     <thead>
@@ -29,23 +28,24 @@
 </tr>
 {% endfor %}
 </table>
+<div class="busdiv">
 <form action="{% url 'book' %}" method="post">
-    <h3>Choose bus to book</h3>
+    <h3 class="busfont">Choose bus to book</h3>
     {% csrf_token %}
-    <label for="bid">ID: </label>
-    <input type="text" placeholder="select the ID" name="bid">
-    <label for="seats">No. of Seats: </label>
-    <input type="number" placeholder="select the number of seats" name="seats">
+    <label for="bid" class="busfont">ID: </label>
+    <input type="number" placeholder="select the ID" name="bid" class="busticchange">
+    <label for="seats" class="busfont">No. of Seats: </label>
+    <input type="number" placeholder="select the number of seats" name="seats" class="busticchange">
     <br>
     <br>
     <div class="pull-right">
-        <button type="submit" class="btn btn-primary float-left">Book bus</button>
+        <button type="submit" class="busformchangebut">Book bus</button>
     </div>
 
 </form>
-
+</div>
 {% else %}
-{{ no.status}}
-{{err.error}}
+<p class="busfont">{{no.status}}</p>
+<p class="busfont">{{err.error}}</p>
 {% endif %}
 {% endblock %}

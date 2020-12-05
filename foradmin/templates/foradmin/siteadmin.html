@@ -1,32 +1,42 @@
 {% extends 'baseLayout.html' %}
-
+{% load static %}
 {% block content %}
 <div>
-    <h1>This is the admin stuff</h1>
+    <h1 class="admin">This is the admin Panel</h1>
 </div>
 {% if admin %}
-{{admin.error}}
+<p class="centerfont">{{admin.error}}</p>
+<img src="{% static 'download.jpg' %}" class="center" alt="...">
 {% else %}
-<div>
+<table class="table table-striped">
+    <thead>
+<tr class="divadmin">
+    <td>
+    <button onclick="location.href = '{% url 'bus' %}';"class="siteadmin">Modify BUS Table</button>
+    </td>
+<!-- </tr> -->
+<!-- <tr class="divadmin"> -->
+    <td>
+    <button onclick="location.href = '{% url 'route' %}';"class="siteadmin">Modify ROUTE Table</button>
+    </td>
+<!-- </tr> -->
+<!-- <tr class="divadmin"> -->
+<td>
+    <button onclick="location.href = '{% url 'ticket' %}';"class="siteadmin">Modify TICKET Table</button>
+    </td>
+<!-- </tr> -->
+<!-- <tr class="divadmin"> -->
+<td>
+    <button onclick="location.href = '{% url 'user' %}';"class="siteadmin">Modify USER Table</button>
+    </td>
+<!-- </tr> -->
+<!-- <tr class="divadmin"> -->
+<td>
+    <button onclick="location.href = '{% url 'avail' %}';"class="siteadmin">Modify AVILABLE Table</button>
+    </td>
+</tr>
 
-    <button onclick="location.href = '{% url 'bus' %}';"name="addaroutes">Modify BUS Table</button>
-</div>
-<div>
-    
-    <button onclick="location.href = '{% url 'route' %}';"name="addaroutes">Modify ROUTE Table</button>
-</div>
-<div>
-
-    <button onclick="location.href = '{% url 'ticket' %}';"name="addaroutes">Modify TICKET Table</button>
-</div>
-<div>
-
-    <button onclick="location.href = '{% url 'user' %}';"name="addaroutes">Modify USER Table</button>
-</div>
-<div>
-
-    <button onclick="location.href = '{% url 'avail' %}';"name="addaroutes">Modify AVILABLE Table</button>
-</div>
-
+</thead>
+</table>
 {% endif %}
 {% endblock %}

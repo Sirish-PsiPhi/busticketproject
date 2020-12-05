@@ -4,17 +4,20 @@
 
 
 <!-- <form> -->
+<div class="busticdiv">
 <form action="{% url 'booktic' %}" method="post">
     {% csrf_token %}
-    <label for="source">Source: </label>
-    <input type="text" class="source" placeholder="Enter Source" name="source">
-    <label for="destination">Destination: </label>
-    <input type="text" class="destination" placeholder="Enter Destination" name="dest">
-    <label for="date">Date: </label>
-    <input type="date" class="date" name="date">
-    <button type="submit">Search</button>
+    <label for="source" class="busfont">Source: </label>
+    <input type="text" class="source" placeholder="Enter Source" name="source" class="busticchange">
+    <label for="destination" class="busfont">Destination: </label>
+    <input type="text" class="destination" placeholder="Enter Destination" name="dest" class="busticchange">
+    <label for="date" class="busfont">Date: </label>
+    <input type="date" class="date" name="date" class="busticchange">
+    <button type="submit" class="busformchangebut">Search</button>
 </form>
-<div><p></p></div>
+</div>
+<br><br>
 
-{{err.error}}
+
+<p class="busfont">{{err.error}}</p>
 {% endblock %}

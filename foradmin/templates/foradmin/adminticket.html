@@ -1,9 +1,11 @@
 {% extends 'baseLayout.html' %}
 
 {% block content %}
+
 <div>
-    <h1>Ticket</h1>
+    <h1 class="admin">Ticket Table Modificaton</h1>
 </div>
+
 {% if tickets %}
 <table class="table table-striped">
     <thead>
@@ -26,19 +28,21 @@
 
 {% endfor %}
 </table>
-<div>
-    <label for="alteraroutes">Change a Ticket Status?</label>
-</div>
+<div class="busdiv">
+    <label for="alteraroutes" class="busfont">Change a Ticket Status?</label>
+
 <form action="{% url 'ticchange' %}" method="post">
     {% csrf_token %}
-    <input type="text" placeholder="Enter Tid to select"name='tid'>
-    <input type="text" placeholder="Enter Status" name="status">
-    <button type="submit">Change</button>
+    <input type="text" placeholder="Enter Tid to select"name='tid' class="busformchange">
+    <input type="text" placeholder="Enter Status" name="status" class="busformchange">
+    <button type="submit" class="busformchangebut">Change</button>
 </form>
-<a href="//127.0.0.1:8000/siteadmin">Go Back?</a>
+</div>
+<br><br>
+<a href="//127.0.0.1:8000/siteadmin" class="bushref">Go Back?</a>
 {% else %}
-{{changed.error}}
-{{changed.status}}
-<a href="//127.0.0.1:8000/siteadmin/ticket">Go Back?</a>
+<p class="busfont">{{changed.error}}</p>
+<p class="busfont">{{changed.status}}</p>
+<a href="//127.0.0.1:8000/siteadmin/ticket" class="bushref">Go Back?</a>
 {% endif %}
 {% endblock %}

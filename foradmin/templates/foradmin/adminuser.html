@@ -1,34 +1,40 @@
 {% extends 'baseLayout.html' %}
 
 {% block content %}
+
 <div>
-    <h1>User</h1>
+    <h1 class="admin">Users Table Modification</h1>
 </div>
+
 {% if users %}
 <table class="table table-striped">
     <thead>
         <td>User ID</td>
         <td>Username</td>
+        <td>Email </td>
     </thead>
 {% for user in users %}
 <tr>
     <td>{{ user.id }}</td>
     <td>{{ user.username }}</td>
+    <td>{{ user.email }}</td>
 </tr>
 {% endfor %}
 </table>
-<div>
-    <label for="deletearoutes">Delete User?</label>
-</div>
+<div class="busdiv">
+    <label for="deletearoutes" class="busfont">Delete User?</label>
+
 <form action="{% url 'userdelete' %}" method="post">
     {% csrf_token %}
-    <input type="text" placeholder="Enter user ID to delete" name='id'>
-    <button type="submit">Delete</button>
+    <input type="text" placeholder="Enter user ID to delete" name='id' class="busformchange">
+    <button type="submit" class="busformchangebut">Delete</button>
 </form>
-<a href="//127.0.0.1:8000/siteadmin">Go Back?</a>
+</div>
+<br><br>
+<a href="//127.0.0.1:8000/siteadmin" class="bushref">Go Back?</a>
 {% else %}
-{{deleted.error}}
-{{deleted.uid}}
-<a href="//127.0.0.1:8000/siteadmin/users">Go Back?</a>
+<p class="busfont">{{deleted.error}}</p>
+<p class="busfont">{{deleted.uid}}</p>
+<a href="//127.0.0.1:8000/siteadmin/users" class="bushref">Go Back?</a>
 {% endif %}
 {% endblock %}
