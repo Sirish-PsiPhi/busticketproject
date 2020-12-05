@@ -49,11 +49,12 @@
     <button type="submit">Delete</button>
 </form>
 <a href="//127.0.0.1:8000/siteadmin">Go Back?</a>
-{{changed}}
 {% else %}
-{{deletedaroute}}
-{{changedaroute}}
+{{deletedaroute.error}}
+{{changedaroute.error}}
+{{changed.message}}
 {{changed}}
+{{deleted.message}}
 {{deleted}}
 <a href="//127.0.0.1:8000/siteadmin/available">Go Back?</a>
 {% endif %}

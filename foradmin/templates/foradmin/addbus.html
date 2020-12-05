@@ -15,7 +15,12 @@
     <button type="submit">Add</button>
 </form>
 <br><br>
-{{added}}
-{{addbus}}
+{{added.message}}
+{{added.error}}
+{{added.bID}}
+{{added.busType}}
+{{added.seats}}
+{{added.costpseat}}
+{{addbus.error}}
 <a href="{% url 'bus' %}">Go back?</a>
 {% endblock %}

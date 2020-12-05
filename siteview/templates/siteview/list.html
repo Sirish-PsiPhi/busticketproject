@@ -5,9 +5,11 @@
 {% if bus %}
 <table class="table table-striped">
     <thead>
+        <td>ID </td>
         <td>BUS ID</td>
         <td>BUS Type</td>
         <td>Journey Time</td>
+        <td>Journey Date</td>
         <td>Source</td>
         <td>Destination</td>
         <td>Seats Available</td>
@@ -15,9 +17,11 @@
     </thead>
 {% for a in bus %}
     <tr>
+    <td>{{ a.id }}</td>
     <td>{{ a.bID }}</td>
     <td>{{ a.bID.busType }}</td>
     <td>{{ a.jTime }}</td>
+    <td>{{ a.jDate }}</td>
     <td>{{ a.rID.source }}</td>
     <td>{{ a.rID.destination }}</td>
     <td>{{ a.bID.seats }}</td>
@@ -28,12 +32,10 @@
 <form action="{% url 'book' %}" method="post">
     <h3>Choose bus to book</h3>
     {% csrf_token %}
-    <label for="bid">Bus ID: </label>
-    <input type="text" placeholder="select the bus ID" name="bid">
+    <label for="bid">ID: </label>
+    <input type="text" placeholder="select the ID" name="bid">
     <label for="seats">No. of Seats: </label>
     <input type="number" placeholder="select the number of seats" name="seats">
-    <label for="rid">Route ID: </label>
-    <input type="text" placeholder="select the route ID" name="rid">
     <br>
     <br>
     <div class="pull-right">
@@ -44,6 +46,6 @@
 
 {% else %}
 {{ no.status}}
-
+{{err.error}}
 {% endif %}
 {% endblock %}

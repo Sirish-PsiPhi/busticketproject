@@ -44,10 +44,14 @@
 </form>
 <a href="//127.0.0.1:8000/siteadmin">Go back?</a>
 {% else %}
-{{deletedaroute}}
-{{changedaroute}}
-{{changed}}
-{{deleted}}
+{{changedaroute.error}}
+{{changed.message}}
+{{changed.error}}
+{{changed.source}}
+{{changed.dest}}
+{{deletedaroute.error}}
+{{deleted.rid}}
+{{deleted.error}}
 <a href="{% url 'route' %}">Go back?</a>
 {% endif %}
 {% endblock %}

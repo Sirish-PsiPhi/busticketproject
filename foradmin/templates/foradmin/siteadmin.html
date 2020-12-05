@@ -5,27 +5,27 @@
     <h1>This is the admin stuff</h1>
 </div>
 {% if admin %}
-{{admin}}
+{{admin.error}}
 {% else %}
 <div>
 
-    <button onclick="location.href = '{% url 'bus' %}';"name="addaroutes">BUS</button>
+    <button onclick="location.href = '{% url 'bus' %}';"name="addaroutes">Modify BUS Table</button>
 </div>
 <div>
     
-    <button onclick="location.href = '{% url 'route' %}';"name="addaroutes">ROUTE</button>
+    <button onclick="location.href = '{% url 'route' %}';"name="addaroutes">Modify ROUTE Table</button>
 </div>
 <div>
 
-    <button onclick="location.href = '{% url 'ticket' %}';"name="addaroutes">TICKET</button>
+    <button onclick="location.href = '{% url 'ticket' %}';"name="addaroutes">Modify TICKET Table</button>
 </div>
 <div>
 
-    <button onclick="location.href = '{% url 'user' %}';"name="addaroutes">USER</button>
+    <button onclick="location.href = '{% url 'user' %}';"name="addaroutes">Modify USER Table</button>
 </div>
 <div>
 
-    <button onclick="location.href = '{% url 'avail' %}';"name="addaroutes">AVILABLE</button>
+    <button onclick="location.href = '{% url 'avail' %}';"name="addaroutes">Modify AVILABLE Table</button>
 </div>
 
 {% endif %}

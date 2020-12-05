@@ -15,7 +15,9 @@
     <button type="submit">Add</button>
 </form>
 <br><br>
-{{route}}
-{{addaroute}}
+{{route.all}}
+{{route.error}}
+{{addaroute.all}}
+
 <a href="{% url 'avail' %}">Go back?</a>
 {% endblock %}

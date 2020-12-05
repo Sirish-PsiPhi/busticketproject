@@ -37,7 +37,8 @@
 </form>
 <a href="//127.0.0.1:8000/siteadmin">Go Back?</a>
 {% else %}
-{{changed}}
+{{changed.error}}
+{{changed.status}}
 <a href="//127.0.0.1:8000/siteadmin/ticket">Go Back?</a>
 {% endif %}
 {% endblock %}

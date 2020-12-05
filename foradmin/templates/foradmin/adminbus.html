@@ -49,10 +49,14 @@
 </form>
 <a href="//127.0.0.1:8000/siteadmin">Go Back?</a>
 {% else %}
-{{changed}}
-{{deleted}}
-{{deletedabus}}
-{{changedabus}}
+{{changed.message}}
+{{changed.bustype}}
+{{changed.seats}}
+{{changed.cost}}
+{{deleted.error}}
+{{deleted.del}}
+{{deletedabus.error}}
+{{changedabus.error}}
 <a href="//127.0.0.1:8000/siteadmin/bus">Go Back?</a>
 {% endif %}
 {% endblock %}

@@ -27,7 +27,8 @@
 </form>
 <a href="//127.0.0.1:8000/siteadmin">Go Back?</a>
 {% else %}
-{{deleted}}
+{{deleted.error}}
+{{deleted.uid}}
 <a href="//127.0.0.1:8000/siteadmin/users">Go Back?</a>
 {% endif %}
 {% endblock %}

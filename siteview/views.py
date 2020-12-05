@@ -10,8 +10,8 @@ def homePage(request):
 @login_required(login_url='login')
 def bookTicket(request):
     if request.method == 'POST':
-        source_s = request.POST.get('source')
-        destination_s = request.POST.get('dest')
+        source_s = str(request.POST.get('source')).lower()
+        destination_s = str(request.POST.get('dest')).lower()
         date_s = request.POST.get('date')
         routes = Route.objects.filter(source=source_s,destination=destination_s)
         if routes:
@@ -46,7 +46,7 @@ def signUp(request):
             return render(request, 'siteview/homePage.html')
         else:
             context["error"] = "Provide valid credentials"
-            #return render(request, 'myapp/signUp.html', context)
+            return render(request, 'siteview/signUp.html', {'error':context})
 
     return render(request, 'siteview/signUp.html')
 
@@ -64,7 +64,7 @@ def signin(request):
                 return redirect('//127.0.0.1:8000/home')
         else:
             context["error"] = "Provide valid credentials"
-            return render(request, 'siteview/login.html')
+            return render(request, 'siteview/login.html',{'error':context})
     return render(request, 'siteview/login.html')
 
 def signOut(request):
@@ -74,24 +74,33 @@ def bookbus(request):
     if request.method == 'POST':
         seats_booked = request.POST.get('seats')
         busid = request.POST.get('bid')
-        routeid = request.POST.get('rid')
-        rid = Route.objects.filter(rID=routeid)
-        bus = Bus.objects.filter(bID=busid)
+        id = AvailableBusRoute.objects.filter(id=busid)
+        rid = Route.objects.filter(rID=id[0].rID)
+        bus = Bus.objects.filter(bID=id[0].bID)
         rem = bus[0].seats
-        if bus:
-           if rem >= int(seats_booked):
+        if id:
+            if rem >= int(seats_booked):
                rem -= int(seats_booked)
                userid = request.user.id
                amount = bus[0].costpseat * int(seats_booked)
-               done = BookedTicket.objects.create(bID=Bus.objects.filter(bID=busid)[0],rID=Route.objects.filter(rID=routeid)[0],uID=User.objects.filter(username=request.user.username)[0],booked=seats_booked,amount=amount,status='Booked') 
+               done = BookedTicket.objects.create(bID=bus[0],rID=rid[0],uID=User.objects.filter(username=request.user.username)[0],booked=seats_booked,amount=amount,status='Booked') 
                bus.update(seats=rem)
-               return render(request, 'siteview/homePage.html') 
+               return render(request, 'siteview/success.html',{'done':done,'var':id})
+            else:
+                err = {}
+                err['error'] = "That many seats are not available"
+                return render(request, 'siteview/list.html',{'error':err})
+        else:
+            err = {}
+            err['error'] = "That Route is not available"
+            return render(request, 'siteview/bookTicket.html',{'error':err})
 
 @login_required(login_url='login')
 def history(request):
     booked = BookedTicket.objects.filter(uID=request.user.id)
     return render(request, 'siteview/history.html',{'books':booked})
 
+@login_required(login_url='login')
 def cancel(request):
 
     if request.method == 'POST':
